@@ -9,10 +9,10 @@ html
 
         meta(name='viewport', content='width=device-width', initial-scale=1)
     body
-
-    
         block content
-            div.login-form
+            div.welcome-div
+                p.welcome-text Welcome to the order form
+            div.order-form
                 form.form(action="/createOrder" method="POST" novalidate)
                     input(type="text", name="name", placeholder="Name")
                     input(type="email", name="email", placeholder="Email")

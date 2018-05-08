@@ -1,10 +1,10 @@
 const mailHandler = require('../handlers/mailHandler');
 
-exports.packageOrderPage = (req, res) => {
-    res.render('index');
+exports.packageOrderPage = async (req, res) => {
+    await res.render('index');
 };
 
-exports.createAccount = (req, res) => {
+exports.createAccount = async (req, res) => {
     const username = Math.floor(1000000 + Math.random() * 9000000000);
     const userpassword = Math.random().toString(36).substr(2, 9)
 
@@ -17,8 +17,7 @@ exports.createAccount = (req, res) => {
         phone: req.body.phone
     }
 
+    await mailHandler.sendMail(userData);
 
-
-    mailHandler.sendMail(userData);
     res.redirect('/success');
 }   

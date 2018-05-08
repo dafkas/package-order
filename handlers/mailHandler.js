@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 
-exports.sendMail = (userData) => {
+exports.sendMail = async (userData) => {
     const options = {
         auth: {
             api_user: process.env.SENDGRID_USERNAME,
@@ -17,7 +17,7 @@ exports.sendMail = (userData) => {
         html: `<p>Hi ${userData.name} thanks for registering the fedex delivery app, see login credentials below: </p><p><b>Username: </b>${userData.username}</p><p><b>Password: </b>${userData.password}</p>`
     };
 
-    client.sendMail(email, function (err, info) {
+    await client.sendMail(email, function (err, info) {
         if (err) {
             console.log(err);
         }
